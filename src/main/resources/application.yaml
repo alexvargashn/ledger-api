@@ -1,3 +1,6 @@
 spring:
   application:
     name: ledger-api
+  profiles:
+    active:
+      - ${SPRING_PROFILES_ACTIVE:dev}

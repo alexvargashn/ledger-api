@@ -1,0 +1,14 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/ledger_db}
+    username: ${POSTGRES_USER:ledger_user}
+    password: ${POSTGRES_PASSWORD:ledger_dev}
+
+logging:
+  level:
+    org.springframework: DEBUG
