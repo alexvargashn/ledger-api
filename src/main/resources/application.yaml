@@ -1,6 +1,9 @@
 spring:
   application:
     name: ledger-api
+  jpa:
+    hibernate:
+      ddl-auto: validate
   profiles:
     active:
-      - ${SPRING_PROFILES_ACTIVE:dev}
+      - ${SPRING_PROFILES_ACTIVE}
