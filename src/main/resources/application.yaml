@@ -4,6 +4,3 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-  profiles:
-    active:
-      - ${SPRING_PROFILES_ACTIVE}

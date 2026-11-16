@@ -33,3 +33,5 @@ build/
 .vscode/
 *:Zone.Identifier
 .env
+
+docs
