@@ -1,7 +1,5 @@
 package io.github.alexvargashn.ledger.domain.model;
 
-import org.hibernate.annotations.DialectOverride;
-
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
@@ -22,6 +20,7 @@ public record Transfer(
         Objects.requireNonNull(id, "Transfer ID cannot be null");
         Objects.requireNonNull(to_account_id, "Transfer To account ID cannot be null");
         Objects.requireNonNull(from_account_id, "Transfer From account ID cannot be null");
+        Objects.requireNonNull(status, "Transfer status cannot be null");
 
         if( amount == null || amount.compareTo(BigDecimal.ZERO) <= 0 ) {
             throw new IllegalArgumentException("Transfer amount must be greater than zero");
@@ -35,12 +34,8 @@ public record Transfer(
             throw new IllegalArgumentException("Invalid currency code");
         }
 
-        if(!List.of(Status.values()).contains(status)) {
-            throw new IllegalArgumentException("Transfer status cannot be " + status);
-        }
-
-        if(status.equals(Status.FAILED)) {
-            Objects.requireNonNull(failure_reason, "Transfer failure reason cannot be null");
+        if (status == Status.FAILED && (failure_reason == null || failure_reason.isBlank())) {
+            throw new IllegalArgumentException("Transfer status cannot be null or blank");
         }
 
     }

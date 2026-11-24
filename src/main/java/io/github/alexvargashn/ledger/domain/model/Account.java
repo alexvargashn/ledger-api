@@ -31,7 +31,7 @@ public record Account(
             throw new IllegalArgumentException("Balance cannot be negative");
         }
 
-        if(version <= 0) {
+        if(version < 0) {
             throw new IllegalArgumentException("Account version must be positive");
         }
     }
